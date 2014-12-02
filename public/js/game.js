@@ -2,10 +2,16 @@
 function Game() {
   this.$stage = $('#stage');
   this.hsienko = new Hsienko(this.$stage);
+  this.shyguy = [new Shyguy(this.$stage), new Shyguy(this.$stage)];
 }
 
 Game.prototype.loop = function() {
   this.hsienko.move();
+  hsienko = this.hsienko
+  this.shyguy.forEach(function (shyguy){
+    shyguy.track(hsienko);
+    shyguy.move();
+  })
 }
 
 $(document).ready(function(){

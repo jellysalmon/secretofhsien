@@ -6,10 +6,23 @@
 }
 
 .hsienko {
+  position: absolute;
   height: 59;
   width: 59;
   position: relative;
   background-image: url("../../assets/images/Hsienko_right.gif");
   background-repeat: no-repeat;
+}
 
+.shyguy {
+  position: absolute;
+  height: 59;
+  width: 59;
+  position: relative;
+  background-image: url("../../assets/images/fatshyguyright.gif");
+  background-repeat: no-repeat;
+}
+
+.powerup {
+  background-image: url("../../assets/images/")
 }
