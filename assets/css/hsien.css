@@ -5,5 +5,10 @@
 }
 
 .hsienko {
-  
+  height: 59;
+  width: 59;
+  position: relative;
+  background-image: url("../images/Hsienko_right.gif");
+  background-repeat: no-repeat;
+
 }

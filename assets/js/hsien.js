@@ -1,24 +1,20 @@
 
 
-function Hsienko() {
-  this.x = 0;
-  this.y = 0;
-  this.initDisplay();
+function Hsienko(stage) {
+  this.$stage = stage
+  this.x = 300;
+  this.y = 300;
+  this.height = 59;
+  this.width = 59;
   this.direction = 'none';
-  this.speed = 3;
+  this.speed = 10;
+  this.initDisplay();
 }
 
 
 Hsienko.prototype.initDisplay = function() {
   this.$hsienko = $("<div class='hsienko'></div>")
   $('#stage').append(this.$hsienko);
-  this.$hsienko.css('position', 'relative');
-  this.$hsienko.css('top', this.x);
-  this.$hsienko.css('left', this.y);
-  this.$hsienko.css('height', 59);
-  this.$hsienko.css('width', 59);
-  this.$hsienko.css('background-image', 'url("assets/images/PF_Hsien-Ko.gif")');
-  this.$hsienko.css('background-repeat', 'no-repeat');
   
   this.updateDisplay();
 }
@@ -28,8 +24,14 @@ Hsienko.prototype.updateDisplay = function() {
   this.$hsienko.css('left', this.x );
 }
 
+Hsienko.prototype.inBounds = function() {
+  return (this.x > 0 && this.x < 600 - this.width &&
+  this.y > 0 && this.y < 600 - this.width)
+}
 
 Hsienko.prototype.move = function() {
+  old_x = this.x;
+  old_y = this.y;
   switch (this.direction) {
     case 'right':
       this.x += this.speed;
@@ -44,20 +46,21 @@ Hsienko.prototype.move = function() {
       this.y += this.speed;
       break;
   }
+  if (! this.inBounds()) {
+    this.x = old_x;
+    this.y = old_y;
+  }
   this.updateDisplay();
 }
 
 function Game() {
-  this.$arena = $('#stage');
-  this.hsienko = new Hsienko();
+  this.$stage = $('#stage');
+  this.hsienko = new Hsienko(this.$stage);
 }
 
 Game.prototype.loop = function() {
   this.hsienko.move();
 }
-
-
-
 
 $(document).ready(function(){
   game = new Game();
