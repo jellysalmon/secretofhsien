@@ -11,6 +11,11 @@ function Hsienko(stage) {
   this.initDisplay();
 }
 
+function Powerup() {
+  this.x = 0;
+  this.y = 0;
+}
+
 
 Hsienko.prototype.initDisplay = function() {
   this.$hsienko = $("<div class='hsienko'></div>")

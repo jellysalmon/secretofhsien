@@ -1,0 +1,15 @@
+#stage {
+  width: 600;
+  height: 600;
+  border: 2px solid black;
+
+}
+
+.hsienko {
+  height: 59;
+  width: 59;
+  position: relative;
+  background-image: url("../../assets/images/Hsienko_right.gif");
+  background-repeat: no-repeat;
+
+}
