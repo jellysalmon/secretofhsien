@@ -7,6 +7,7 @@ function Hsienko(stage) {
   this.direction = 'none';
   this.speed = 5;
   this.name = 'hsienko';
+  this.dead = false
   this.initDisplay();
   this.sprite = {left: 'url("/images/Hsienko_walkleft.gif")', right: 'url("/images/Hsienko_walkright.gif")', down: 'url("/images/PF_Hsien-KO.gif")', up: 'url("/images/PF_Hsien-KO.gif")'};
 }
@@ -71,6 +72,7 @@ Hsienko.prototype.setDirection = function(direction) {
       break;   
   }
 }
+
 Hsienko.prototype.checkCollision = function(object) {
   return (this.x < object.x + object.width &&
    this.x + this.width > object.x &&

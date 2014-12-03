@@ -8,8 +8,11 @@ function Game() {
   this.startTime = new Date();
   this.spawnInterval = 5000;
   this.nextSpawnTime = this.startTime.getTime() + this.spawnInterval;
-  this.shyguySpeed = 1
+  this.shyguySpeed = 1;
+  this.gameover = false;
 }
+
+
 
 Game.prototype.loop = function() {
   this.hsienko.move();
@@ -19,26 +22,26 @@ Game.prototype.loop = function() {
   
   powerups.forEach(function (powerup) {
       if (powerup.checkCollision(hsienko)) {
-        hsienko.speed += .1
+        hsienko.speed += 1
         powerup.dead = true
         powerup.destroy();
       }
-    });
-  // if (this.hsienko.checkCollision(powerup)) {
-  //   this.powerup.destroy();
-  //   hsienko.speed += .1
-  //   $('.powerup').remove();
-  // }
+  });
+  
+
 
   this.powerups = _(this.powerups).reject(function(powerup) { return powerup.dead });
   
-  this.updateTimer();
+  if (! hsienko.dead) {
+    this.updateTimer();
+  }
+
   
   if (Date.now() > this.nextSpawnTime) {
     shyguyspeed = this.shyguySpeed += 1;
     this.shyguy.push(new Shyguy(this.$stage, shyguyspeed));
     this.nextSpawnTime += this.spawnInterval;
-    if (shyguyspeed % 3 === 0) {
+    if (shyguyspeed % 2 === 0) {
       this.powerups.push(new Powerup(this.$stage));
     }
   }
@@ -46,6 +49,11 @@ Game.prototype.loop = function() {
   
   fireballs = this.fireballs;
   this.shyguy.forEach(function (shyguy) {
+    if (shyguy.checkCollision(hsienko)){
+      hsienko.destroy();
+      hsienko.dead = true;
+    }
+
     fireballs.forEach(function (fireball) {
       if (shyguy.checkCollision(fireball)) {
         shyguy.destroy();

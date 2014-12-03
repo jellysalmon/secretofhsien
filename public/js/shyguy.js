@@ -2,8 +2,8 @@ function Shyguy(stage, speed) {
   this.$stage = stage;
   this.x = Math.floor(Math.random() * (600 - 100)) + 100
   this.y = Math.floor(Math.random() * (600 - 100)) + 100
-  this.height = 59;
-  this.width = 59;
+  this.height = 30;
+  this.width = 30;
   this.dead = false;
   this.direction = 'none';
   this.speed = speed;
