@@ -32,19 +32,19 @@ Hsienko.prototype.move = function() {
   old_y = this.y;
   switch (this.direction) {
     case 'right':
-      this.$sprite.css('background-image', 'url("../../assets/images/Hsienko_right.gif")');
+      this.$sprite.css('background-image', 'url("/images/Hsienko_right.gif")');
       this.x += this.speed;
       break;
     case 'left':
-      this.$sprite.css('background-image', 'url("../../assets/images/Hsienko_left.gif")');
+      this.$sprite.css('background-image', 'url("/images/Hsienko_left.gif")');
       this.x -= this.speed;
       break;
     case 'up':
-    this.$sprite.css('background-image', 'url("../../assets/images/PF_Hsien-Ko.gif")');
+    this.$sprite.css('background-image', 'url("/images/PF_Hsien-Ko.gif")');
       this.y -= this.speed;
       break;
     case 'down':
-    this.$sprite.css('background-image', 'url("../../assets/images/PF_Hsien-Ko.gif")');
+    this.$sprite.css('background-image', 'url("/images/PF_Hsien-Ko.gif")');
       this.y += this.speed;
       break;
   }

@@ -1,30 +1,30 @@
 #stage {
-  width: 600;
-  height: 600;
+  width: 600px;
+  height: 600px;
   border: 2px solid black;
-  background-image: url("/assets/images/E_Square.png");
+  background-image: url("/images/E_Square.png");
 
 }
 
 .hsienko {
   position: absolute;
-  height: 59;
-  width: 59;
+  height: 59px;
+  width: 59px;
   position: relative;
-  background-image: url("../../assets/images/Hsienko_right.gif");
+  background-image: url("/images/Hsienko_right.gif");
   background-repeat: no-repeat;
 }
 
 .shyguy {
   position: absolute;
-  height: 59;
-  width: 59;
+  height: 59px;
+  width: 59px;
   position: relative;
-  background-image: url("../../assets/images/fatshyguyright.gif");
+  background-image: url("/images/fatshyguyright.gif");
   background-repeat: no-repeat;
 }
-
+/*
 .powerup {
   background-image: url("../../assets/images/")
-}
+}*/
 
