@@ -3,7 +3,7 @@ function Fireball(stage, direction, x, y) {
   this.x = x;
   this.y = y;
   this.direction = direction;
-  this.speed = 4;
+  this.speed = 7;
   this.height = 16;
   this.width = 16;
   this.name = 'fireball';

@@ -8,6 +8,7 @@ function Powerup(stage) {
   this.speed = 6;
   this.name = 'powerup';
   this.initDisplay();
+  this.dead = false
 }
 
 Powerup.prototype.initDisplay = Hsienko.prototype.initDisplay;
@@ -41,6 +42,7 @@ Powerup.prototype.move = function() {
 Powerup.prototype.track = function(hsienko) {
   diff_x = Math.abs(this.x - hsienko.x)
   diff_y = Math.abs(this.y - hsienko.y)
+  
   if (diff_x > diff_y) {
       if (this.x > hsienko.x) {
         this.direction = "right";
@@ -57,6 +59,7 @@ Powerup.prototype.track = function(hsienko) {
       }
     }
 }
+
 Powerup.prototype.destroy = function() {
   this.$sprite.remove();
 }

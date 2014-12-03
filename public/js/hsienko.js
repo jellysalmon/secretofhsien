@@ -71,7 +71,12 @@ Hsienko.prototype.setDirection = function(direction) {
       break;   
   }
 }
-
+Hsienko.prototype.checkCollision = function(object) {
+  return (this.x < object.x + object.width &&
+   this.x + this.width > object.x &&
+   this.y < object.y + object.height &&
+   this.height + this.y > object.y);
+}
 Hsienko.prototype.destroy = function() {
   this.$sprite.remove()
 }

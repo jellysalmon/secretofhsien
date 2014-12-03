@@ -3,33 +3,47 @@ function Game() {
   this.$stage = $('#stage');
   this.hsienko = new Hsienko(this.$stage);
   this.shyguy = [new Shyguy(this.$stage, 1), new Shyguy(this.$stage, 3)];
-  this.powerup = new Powerup(this.$stage);
+  this.powerups = [];
   this.fireballs = [];
   this.startTime = new Date();
-  this.spawnInterval = 2000;
+  this.spawnInterval = 5000;
   this.nextSpawnTime = this.startTime.getTime() + this.spawnInterval;
+  this.shyguySpeed = 1
 }
 
 Game.prototype.loop = function() {
   this.hsienko.move();
   hsienko = this.hsienko;
+  powerups = this.powerups;
   
-  if (this.powerup.checkCollision(hsienko)) {
-    this.powerup.destroy();
-    hsienko.speed += 1
-    $('.powerup').remove();
-  }
+  
+  powerups.forEach(function (powerup) {
+      if (powerup.checkCollision(hsienko)) {
+        hsienko.speed += .1
+        powerup.dead = true
+        powerup.destroy();
+      }
+    });
+  // if (this.hsienko.checkCollision(powerup)) {
+  //   this.powerup.destroy();
+  //   hsienko.speed += .1
+  //   $('.powerup').remove();
+  // }
+
+  this.powerups = _(this.powerups).reject(function(powerup) { return powerup.dead });
   
   this.updateTimer();
   
-  // if (Date.now() > this.nextSpawnTime) {
-  //   this.shyguy.push(new Shyguy(this.$arena))
-  //   console.log("SpawnTime")
-  //   this.nextSpawnTime += this.spawnInterval;
-  // }
+  if (Date.now() > this.nextSpawnTime) {
+    shyguyspeed = this.shyguySpeed += 1;
+    this.shyguy.push(new Shyguy(this.$stage, shyguyspeed));
+    this.nextSpawnTime += this.spawnInterval;
+    if (shyguyspeed % 3 === 0) {
+      this.powerups.push(new Powerup(this.$stage));
+    }
+  }
   
-  this.powerup.move();
-
+  
   fireballs = this.fireballs;
   this.shyguy.forEach(function (shyguy) {
     fireballs.forEach(function (fireball) {
@@ -42,6 +56,7 @@ Game.prototype.loop = function() {
       shyguy.move();
     }
   });
+  
   this.shyguy = _(this.shyguy).reject(function(shyguy) { return shyguy.dead });
   this.fireballs.forEach(function (fireball) {
     fireball.move();
@@ -57,7 +72,7 @@ Game.prototype.throwFireball = function() {
 }
 
 Game.prototype.updateTimer = function() {
-  $('#timer').html((Date.now() - this.startTime) / 1000);
+  $('#timer').html((Date.now() - this.startTime));
 }
 
 $(document).ready(function(){
