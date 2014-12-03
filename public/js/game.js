@@ -13,12 +13,17 @@ function Game() {
 Game.prototype.loop = function() {
   this.hsienko.move();
   hsienko = this.hsienko;
+  if (this.powerup.checkCollision(hsienko)) {
+    this.powerup.destroy();
+    hsienko.speed += 10
+  }
   // this.updateTimer();
   // if (Date.now() > this.nextSpawnTime) {
   //   this.shyguy.push(new Shyguy(this.$arena))
   //   this.nextSpawnTime += this.spawnInterval;
   // }
   
+
   fireballs = this.fireballs;
   this.shyguy.forEach(function (shyguy) {
     fireballs.forEach(function (fireball) {

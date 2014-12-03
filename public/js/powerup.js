@@ -57,3 +57,7 @@ Powerup.prototype.track = function(hsienko) {
       }
     }
 }
+Powerup.prototype.destroy = function() {
+  this.$sprite.remove();
+}
+Powerup.prototype.checkCollision = Shyguy.prototype.checkCollision;
