@@ -4,6 +4,7 @@ function Game() {
   this.hsienko = new Hsienko(this.$stage);
   this.shyguy = [new Shyguy(this.$stage), new Shyguy(this.$stage)];
   this.powerup = new Powerup(this.$stage);
+  this.fireballs = [];
 }
 
 Game.prototype.loop = function() {
@@ -15,6 +16,13 @@ Game.prototype.loop = function() {
     shyguy.track(hsienko);
     shyguy.move();
   })
+  this.fireballs.forEach(function (fireball){
+    fireball.move();
+  })
+}
+
+Game.prototype.throwFireball = function() {
+  this.fireballs.push(new Fireball(this.$stage, this.hsienko.direction, this.hsienko.x, this.hsienko.y));
 }
 
 $(document).ready(function(){
@@ -34,6 +42,10 @@ $(document).ready(function(){
   })
   Mousetrap.bind('down', function(){
     game.hsienko.direction = 'down'
+  })
+  
+  Mousetrap.bind('space', function() {
+    game.throwFireball();
   })
 
 });
