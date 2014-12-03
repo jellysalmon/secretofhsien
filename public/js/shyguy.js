@@ -1,7 +1,7 @@
 function Shyguy(stage, speed) {
   this.$stage = stage;
-  this.x = Math.random() * this.$stage.width()/2;
-  this.y = Math.random() * this.$stage.height()/2;
+  this.x = Math.floor(Math.random() * (600 - 100)) + 100
+  this.y = Math.floor(Math.random() * (600 - 100)) + 100
   this.height = 59;
   this.width = 59;
   this.dead = false;
@@ -9,11 +9,13 @@ function Shyguy(stage, speed) {
   this.speed = speed;
   this.name = 'shyguy';
   this.initDisplay();
+  this.sprite = {left: 'url("/images/fatshyguyleft.gif")', right: 'url("/images/fatshyguyright.gif")'};
 }
 
 Shyguy.prototype.initDisplay = Hsienko.prototype.initDisplay;
 Shyguy.prototype.updateDisplay = Hsienko.prototype.updateDisplay;
 Shyguy.prototype.inBounds = Hsienko.prototype.inBounds;
+Shyguy.prototype.setDirection = Hsienko.prototype.setDirection
 
 Shyguy.prototype.move = function() {
   old_x = this.x;

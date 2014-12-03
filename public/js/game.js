@@ -13,16 +13,22 @@ function Game() {
 Game.prototype.loop = function() {
   this.hsienko.move();
   hsienko = this.hsienko;
+  
   if (this.powerup.checkCollision(hsienko)) {
     this.powerup.destroy();
-    hsienko.speed += 10
+    hsienko.speed += 1
+    $('.powerup').remove();
   }
-  // this.updateTimer();
+  
+  this.updateTimer();
+  
   // if (Date.now() > this.nextSpawnTime) {
   //   this.shyguy.push(new Shyguy(this.$arena))
+  //   console.log("SpawnTime")
   //   this.nextSpawnTime += this.spawnInterval;
   // }
   
+  this.powerup.move();
 
   fireballs = this.fireballs;
   this.shyguy.forEach(function (shyguy) {
@@ -50,25 +56,19 @@ Game.prototype.throwFireball = function() {
   this.fireballs.push(new Fireball(this.$stage, this.hsienko.direction, this.hsienko.x, this.hsienko.y));
 }
 
+Game.prototype.updateTimer = function() {
+  $('#timer').html((Date.now() - this.startTime) / 1000);
+}
+
 $(document).ready(function(){
   game = new Game();
   setInterval(function() { game.loop(); }, 20);
-
-  Mousetrap.bind('right', function(){
-    game.hsienko.direction = 'right'
-  })
-
-  Mousetrap.bind('left', function(){
-    game.hsienko.direction = 'left'
-    
-  })
-  Mousetrap.bind('up', function(){
-    game.hsienko.direction = 'up'
-  })
-  Mousetrap.bind('down', function(){
-    game.hsienko.direction = 'down'
-  })
-  
+ 
+ ['left', 'right', 'up', 'down'].forEach(function(direction) {
+    Mousetrap.bind(direction, function() {
+      game.hsienko.setDirection(direction);
+    });
+  });
   Mousetrap.bind('space', function() {
     game.throwFireball();
   })

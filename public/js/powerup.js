@@ -1,7 +1,7 @@
 function Powerup(stage) {
   this.$stage = stage
-  this.x = Math.random() * this.$stage.width()/3;
-  this.y = Math.random() * this.$stage.height()/3;
+  this.x = Math.floor(Math.random() * (600 - 100)) + 100
+  this.y = Math.floor(Math.random() * (600 - 100)) + 100
   this.height = 30;
   this.width = 30;
   this.direction = 'none';
