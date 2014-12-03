@@ -1,10 +1,10 @@
 function Powerup(stage) {
   this.$stage = stage
-  this.x = Math.random() * this.$stage.width();
-  this.y = Math.random() * this.$stage.height();
-  this.height = 100;
-  this.width = 100;
-  this.direction = 'right';
+  this.x = Math.random() * this.$stage.width()/3;
+  this.y = Math.random() * this.$stage.height()/3;
+  this.height = 30;
+  this.width = 30;
+  this.direction = 'none';
   this.speed = 6;
   this.name = 'powerup';
   this.initDisplay();

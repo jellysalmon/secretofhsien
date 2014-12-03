@@ -43,6 +43,10 @@ Fireball.prototype.move = function() {
   if (! this.inBounds()) {
     this.x = old_x;
     this.y = old_y;
+    this.outOfBounds = true;
   }
   this.updateDisplay();
+}
+Fireball.prototype.destroy = function() {
+  this.$sprite.remove();
 }

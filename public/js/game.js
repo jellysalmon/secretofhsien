@@ -5,6 +5,9 @@ function Game() {
   this.shyguy = [new Shyguy(this.$stage), new Shyguy(this.$stage)];
   this.powerup = new Powerup(this.$stage);
   this.fireballs = [];
+  this.startTime = new Date();
+  this.spawnInterval = 2000;
+  this.nextSpawnTime = this.startTime.getTime() + this.spawnInterval;
 }
 
 Game.prototype.loop = function() {
@@ -18,7 +21,12 @@ Game.prototype.loop = function() {
   })
   this.fireballs.forEach(function (fireball){
     fireball.move();
+    if (fireball.outOfBounds) {
+      fireball.destroy();
+    }
   })
+  this.fireballs = _(this.fireballs).reject(function(fireball) {
+    return fireball.outOfBounds });
 }
 
 Game.prototype.throwFireball = function() {

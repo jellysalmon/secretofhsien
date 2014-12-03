@@ -23,8 +23,8 @@ Hsienko.prototype.updateDisplay = function() {
 }
 
 Hsienko.prototype.inBounds = function() {
-  return (this.x > 0 && this.x < 800 - this.width &&
-  this.y > 0 && this.y < 800 - this.width)
+  return (this.x > this.width / 2 && this.x < this.$stage.width() - this.width / 2 &&
+  this.y > this.height / 2 && this.y < this.$stage.height() - this.height / 2)
 }
 
 Hsienko.prototype.move = function() {

@@ -1,7 +1,7 @@
 function Shyguy(stage) {
   this.$stage = stage
-  this.x = Math.random() * this.$stage.width();
-  this.y = Math.random() * this.$stage.height();
+  this.x = Math.random() * this.$stage.width()/2;
+  this.y = Math.random() * this.$stage.height()/2;
   this.height = 59;
   this.width = 59;
   this.direction = 'none';
