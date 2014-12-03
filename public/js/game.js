@@ -3,11 +3,14 @@ function Game() {
   this.$stage = $('#stage');
   this.hsienko = new Hsienko(this.$stage);
   this.shyguy = [new Shyguy(this.$stage), new Shyguy(this.$stage)];
+  this.powerup = new Powerup(this.$stage);
 }
 
 Game.prototype.loop = function() {
   this.hsienko.move();
   hsienko = this.hsienko
+  this.powerup.track(hsienko)
+  this.powerup.move();
   this.shyguy.forEach(function (shyguy){
     shyguy.track(hsienko);
     shyguy.move();
@@ -24,12 +27,13 @@ $(document).ready(function(){
 
   Mousetrap.bind('left', function(){
     game.hsienko.direction = 'left'
+    
   })
   Mousetrap.bind('up', function(){
     game.hsienko.direction = 'up'
   })
   Mousetrap.bind('down', function(){
-  game.hsienko.direction = 'down'
+    game.hsienko.direction = 'down'
   })
 
 });

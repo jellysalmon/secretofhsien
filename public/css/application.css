@@ -1,6 +1,6 @@
 #stage {
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   border: 2px solid black;
   background-image: url("/images/E_Square.png");
 
@@ -8,10 +8,9 @@
 
 .hsienko {
   position: absolute;
-  height: 59px;
-  width: 59px;
-  position: relative;
-  background-image: url("/images/Hsienko_right.gif");
+  height: 96px;
+  width: 78px;
+  background-image: url("/images/PF_Hsien-Ko.gif");
   background-repeat: no-repeat;
 }
 
@@ -19,12 +18,21 @@
   position: absolute;
   height: 59px;
   width: 59px;
-  position: relative;
   background-image: url("/images/fatshyguyright.gif");
   background-repeat: no-repeat;
 }
-/*
-.powerup {
-  background-image: url("../../assets/images/")
-}*/
 
+.powerup {
+  position: absolute;
+  background-image: url("/images/powerup.gif");
+  height: 31px;
+  width: 32px;
+}
+
+.fireball {
+  position: absolute;
+  background-image: url("/images/fireball.gif");
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 70px;
+}
