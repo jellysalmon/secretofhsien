@@ -2,7 +2,7 @@
 function Game() {
   this.$stage = $('#stage');
   this.hsienko = new Hsienko(this.$stage);
-  this.shyguy = [new Shyguy(this.$stage), new Shyguy(this.$stage)];
+  this.shyguy = [new Shyguy(this.$stage, 1), new Shyguy(this.$stage, 3)];
   this.powerup = new Powerup(this.$stage);
   this.fireballs = [];
   this.startTime = new Date();
@@ -12,21 +12,33 @@ function Game() {
 
 Game.prototype.loop = function() {
   this.hsienko.move();
-  hsienko = this.hsienko
-  this.powerup.track(hsienko)
-  this.powerup.move();
-  this.shyguy.forEach(function (shyguy){
-    shyguy.track(hsienko);
-    shyguy.move();
-  })
-  this.fireballs.forEach(function (fireball){
+  hsienko = this.hsienko;
+  // this.updateTimer();
+  // if (Date.now() > this.nextSpawnTime) {
+  //   this.shyguy.push(new Shyguy(this.$arena))
+  //   this.nextSpawnTime += this.spawnInterval;
+  // }
+  
+  fireballs = this.fireballs;
+  this.shyguy.forEach(function (shyguy) {
+    fireballs.forEach(function (fireball) {
+      if (shyguy.checkCollision(fireball)) {
+        shyguy.destroy();
+      }
+    });
+    if (! shyguy.dead) {
+      shyguy.track(hsienko);
+      shyguy.move();
+    }
+  });
+  this.shyguy = _(this.shyguy).reject(function(shyguy) { return shyguy.dead });
+  this.fireballs.forEach(function (fireball) {
     fireball.move();
     if (fireball.outOfBounds) {
       fireball.destroy();
     }
-  })
-  this.fireballs = _(this.fireballs).reject(function(fireball) {
-    return fireball.outOfBounds });
+  });
+  this.fireballs = _(this.fireballs).reject(function(fireball) { return fireball.outOfBounds });
 }
 
 Game.prototype.throwFireball = function() {

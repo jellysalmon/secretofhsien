@@ -5,7 +5,7 @@ function Hsienko(stage) {
   this.height = 98;
   this.width = 76;
   this.direction = 'none';
-  this.speed = 3;
+  this.speed = 5;
   this.name = 'hsienko';
   this.initDisplay();
 }

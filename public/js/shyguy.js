@@ -1,11 +1,12 @@
-function Shyguy(stage) {
-  this.$stage = stage
+function Shyguy(stage, speed) {
+  this.$stage = stage;
   this.x = Math.random() * this.$stage.width()/2;
   this.y = Math.random() * this.$stage.height()/2;
   this.height = 59;
   this.width = 59;
+  this.dead = false;
   this.direction = 'none';
-  this.speed = 2;
+  this.speed = speed;
   this.name = 'shyguy';
   this.initDisplay();
 }
@@ -40,6 +41,13 @@ Shyguy.prototype.move = function() {
   this.updateDisplay();
 }
 
+Shyguy.prototype.checkCollision = function(object) {
+  return (this.x < object.x + object.width &&
+   this.x + this.width > object.x &&
+   this.y < object.y + object.height &&
+   this.height + this.y > object.y);
+}
+
 Shyguy.prototype.track = function(hsienko) {
   diff_x = Math.abs(this.x - hsienko.x)
   diff_y = Math.abs(this.y - hsienko.y)
@@ -58,4 +66,7 @@ Shyguy.prototype.track = function(hsienko) {
       this.direction = 'up';
       }
     }
+}
+Shyguy.prototype.destroy = function() {
+  this.$sprite.remove();
 }
