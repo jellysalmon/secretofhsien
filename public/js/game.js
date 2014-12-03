@@ -20,7 +20,7 @@ $(document).ready(function(){
 
   Mousetrap.bind('right', function(){
     game.hsienko.direction = 'right'
-  })  
+  })
 
   Mousetrap.bind('left', function(){
     game.hsienko.direction = 'left'

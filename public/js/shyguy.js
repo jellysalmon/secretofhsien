@@ -19,11 +19,11 @@ Shyguy.prototype.move = function() {
   old_y = this.y;
   switch (this.direction) {
     case 'right':
-      this.$sprite.css('background-image', 'url("../../assets/images/fatshyguyright.gif")');
+      this.$sprite.css('background-image', 'url("/assets/images/fatshyguyright.gif")');
       this.x += this.speed;
       break;
     case 'left':
-      this.$sprite.css('background-image', 'url("../../assets/images/fatshyguyleft.gif")');
+      this.$sprite.css('background-image', 'url("/assets/images/fatshyguyleft.gif")');
       this.x -= this.speed;
       break;
     case 'up':
