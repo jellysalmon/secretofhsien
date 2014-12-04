@@ -16,6 +16,7 @@ gem 'rake'
 gem 'shotgun'
 gem 'dotenv'
 gem 'httparty'
+gem 'env'
 
 group :test do
   gem 'shoulda-matchers'

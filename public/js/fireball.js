@@ -4,8 +4,8 @@ function Fireball(stage, direction, x, y) {
   this.y = y;
   this.direction = direction;
   this.speed = 7;
-  this.height = 16;
-  this.width = 16;
+  this.height = 50;
+  this.width = 50;
   this.name = 'fireball';
   this.initDisplay();
 }

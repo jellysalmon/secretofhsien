@@ -2,8 +2,8 @@ function Hsienko(stage) {
   this.$stage = stage
   this.x = 300;
   this.y = 300;
-  this.height = 98;
-  this.width = 76;
+  this.height = 50;
+  this.width = 50;
   this.direction = 'none';
   this.speed = 5;
   this.name = 'hsienko';

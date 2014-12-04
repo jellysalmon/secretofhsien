@@ -13,13 +13,11 @@ function Game() {
   this.currentScore = 0;
 }
 
-// $('span').html 
-
 Game.prototype.loop = function() {
   this.hsienko.move();
   hsienko = this.hsienko;
   powerups = this.powerups;
-  
+  fireballs = this.fireballs;
   
   powerups.forEach(function (powerup) {
       if (powerup.checkCollision(hsienko)) {
@@ -38,6 +36,7 @@ Game.prototype.loop = function() {
   }
   
   if (hsienko.dead) {
+    // $('#stage').append("<div class="hsienko" background-image="images/Hsienko_walkright.gif"></div>")
     this.gameOver = true
   }
   
@@ -51,7 +50,7 @@ Game.prototype.loop = function() {
   }
   
   
-  fireballs = this.fireballs;
+  
   this.shyguy.forEach(function (shyguy) {
     if (shyguy.checkCollision(hsienko)){
       hsienko.destroy();
@@ -70,14 +69,15 @@ Game.prototype.loop = function() {
   });
   
   this.shyguy = _(this.shyguy).reject(function(shyguy) { return shyguy.dead });
+  
   this.fireballs.forEach(function (fireball) {
     fireball.move();
     if (fireball.outOfBounds) {
       fireball.destroy();
     }
   });
+  
   this.fireballs = _(this.fireballs).reject(function(fireball) { return fireball.outOfBounds });
-  console.log(this.gameOver)
 
   if (this.gameOver) {
     window.clearInterval(gameLoop)
@@ -85,7 +85,7 @@ Game.prototype.loop = function() {
 }
 
 Game.prototype.throwFireball = function() {
-  this.fireballs.push(new Fireball(this.$stage, this.hsienko.direction, this.hsienko.x, this.hsienko.y));
+  this.fireballs.push(new Fireball(this.$stage, this.hsienko.direction, this.hsienko.x, this.hsienko.y + 30));
 }
 
 Game.prototype.updateTimer = function() {

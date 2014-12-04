@@ -45,9 +45,9 @@ Shyguy.prototype.move = function() {
 
 Shyguy.prototype.checkCollision = function(object) {
   return (this.x < object.x + object.width &&
-   this.x + this.width > object.x &&
-   this.y < object.y + object.height &&
-   this.height + this.y > object.y);
+          this.x + this.width > object.x &&
+          this.y < object.y + object.height && 
+          this.y + this.height > object.y);
 }
 
 Shyguy.prototype.track = function(hsienko) {
