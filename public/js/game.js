@@ -9,10 +9,11 @@ function Game() {
   this.spawnInterval = 5000;
   this.nextSpawnTime = this.startTime.getTime() + this.spawnInterval;
   this.shyguySpeed = 1;
-  this.gameover = false;
+  this.gameOver = false;
+  this.currentScore = 0;
 }
 
-
+// $('span').html 
 
 Game.prototype.loop = function() {
   this.hsienko.move();
@@ -35,7 +36,10 @@ Game.prototype.loop = function() {
   if (! hsienko.dead) {
     this.updateTimer();
   }
-
+  
+  if (hsienko.dead) {
+    this.gameOver = true
+  }
   
   if (Date.now() > this.nextSpawnTime) {
     shyguyspeed = this.shyguySpeed += 1;
@@ -73,6 +77,11 @@ Game.prototype.loop = function() {
     }
   });
   this.fireballs = _(this.fireballs).reject(function(fireball) { return fireball.outOfBounds });
+  console.log(this.gameOver)
+
+  if (this.gameOver) {
+    window.clearInterval(gameLoop)
+  }
 }
 
 Game.prototype.throwFireball = function() {
@@ -81,11 +90,15 @@ Game.prototype.throwFireball = function() {
 
 Game.prototype.updateTimer = function() {
   $('#timer').html((Date.now() - this.startTime));
+  this.currentScore = Date.now() - this.startTime;
 }
 
 $(document).ready(function(){
   game = new Game();
-  setInterval(function() { game.loop(); }, 20);
+  
+  gameLoop = setInterval(function() { game.loop(); }, 20);
+  
+  
  
  ['left', 'right', 'up', 'down'].forEach(function(direction) {
     Mousetrap.bind(direction, function() {
