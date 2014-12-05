@@ -1,6 +1,7 @@
 body {
-  background-color: #483D8B;
+  background-color: #9F9F9F;
 }
+
 
 #stage {
   width: 800px;
@@ -8,18 +9,51 @@ body {
   border: 2px solid black;
   background-image: url("/images/E_Square.png");
   float:left;
+}
 
+
+#user {
+  color: #DB0E58;
 }
 
 .text {
   font-family: 'Bangers', cursive;
   font-size: 2em;
+  text-align: justify;
 }
 
-#login  { 
-  margin-left: auto;
-  margin-right: auto;
+a {
+  color: #DB0E58;
+}
+
+#score_button {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #78125d;
+  font-size: 20px;
+  background: #A2D2E2;
+  padding: 10px 20px 10px 20px;
+  border: solid #1f628d 2px;
+  text-decoration: none;
+}
+
+#score_button:hover {
+  background: #7232C2;
+  text-decoration: none;
+}
+}
+.login  { 
+  float: left;
   width: 50%;
+}
+
+.logo {
+  float: left;
+  width: 49%;
+  margin-left: 10px;
+  height: 500px;
 }
 
 #wrapper{ 
