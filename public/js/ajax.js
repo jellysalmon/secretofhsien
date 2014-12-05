@@ -28,10 +28,10 @@ $(document).ready(function() {
         });
         
         var items = _.map(sortedScores, function (score) {
-            return "<li>" + score.user + ": " + score.high_score + "</li>";
+            return "<li>" + score.user + " " + score.high_score + "</li>";
         });
         
-        $("#leaderboard").empty();
+        // $("#leaderboard").empty();
         $('#leaderboard').append(items);
 
       })

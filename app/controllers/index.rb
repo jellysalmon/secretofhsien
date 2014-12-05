@@ -35,6 +35,7 @@ end
 
 
 get '/game/:user_id' do 
+  @users = User.order('high_score DESC').limit(5)
   @user = User.find(params[:user_id])
   erb :index
 end
@@ -45,8 +46,9 @@ post '/submit_score' do
   new_score = params[:score]
 
   user = User.find_by_name(params[:name])
-  
 
+  p user.name
+  p user.high_score
   
   if user.high_score < new_score.to_i 
     user.update_attribute("high_score", new_score)

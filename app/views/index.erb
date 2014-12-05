@@ -1,14 +1,20 @@
   <body>
-    <h1 id="user"><%=@user.name.capitalize%><h1>
-    <h1> Welcome to Hsien-Go ! </h1>
     <div id="stage">
     </div>
+  <div class ="text" id="wrapper">
+    <div id="user"><%=@user.name.capitalize%></div>
+    <div> Welcome to Hsien-Go ! </div>
     Score: <span id="timer">0</span>
-
     <form action="/submit_score" method="post">
-      <input id="score_button" type="submit" value="Upload Score!">
+      <input id="score_button" type="submit" value="Upload High Score!">
     </form>
-
-    <ul id="leaderboard"></ul>
+    <div>
+    <ol id="leaderboard">
+    <p>Hall of Fame</p>
+      <% @users.all.each do |user| %>
+        <li><%= "#{user.name} #{user.high_score}" %> </li>
+      <% end %>
+    </ol>
+  </div>
   </body>
 

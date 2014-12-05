@@ -1,9 +1,30 @@
+body {
+  background-color: #483D8B;
+}
+
 #stage {
   width: 800px;
-  height: 800px;
+  height: 590px;
   border: 2px solid black;
   background-image: url("/images/E_Square.png");
+  float:left;
 
+}
+
+.text {
+  font-family: 'Bangers', cursive;
+  font-size: 2em;
+}
+
+#login  { 
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#wrapper{ 
+  float:left;
+  margin-left: 15px;
 }
 
 .hsienko {
@@ -35,4 +56,11 @@
   background-repeat: no-repeat;
   height: 70px;
   width: 70px;
+}
+.hsienkodead {
+  position: absolute;
+  height: 96px;
+  width: 96px;
+  background-image: url("/images/hsienko_dizzy.gif");
+  background-repeat: no-repeat;
 }

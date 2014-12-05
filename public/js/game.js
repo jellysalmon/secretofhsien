@@ -18,13 +18,17 @@ Game.prototype.loop = function() {
   hsienko = this.hsienko;
   powerups = this.powerups;
   fireballs = this.fireballs;
+
+
   
   powerups.forEach(function (powerup) {
       if (powerup.checkCollision(hsienko)) {
-        hsienko.speed += 5
+        hsienko.speed += 2
         powerup.dead = true
         powerup.destroy();
       }
+      powerup.track(hsienko);
+      powerup.move();
   });
   
 
@@ -36,7 +40,7 @@ Game.prototype.loop = function() {
   }
   
   if (hsienko.dead) {
-    // $('#stage').append("<div class="hsienko" background-image="images/Hsienko_walkright.gif"></div>")
+    $('#wrapper').append('<div class="hsienkodead"></div>')
     this.gameOver = true
   }
   
