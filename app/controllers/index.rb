@@ -24,14 +24,7 @@ get "/logged_in" do
     grant_type: "authorization_code"
   })
 
-  p "TOKEN RESPONSE"
-  p token_response
-
-
   access_token = token_response["access_token"]
-  p "ACCESS TOKEN"
-  p access_token
-
 
   @linkedin_response = HTTParty.get("https://api.linkedin.com/v1/people/~?oauth2_access_token=#{access_token}")
 
@@ -56,9 +49,10 @@ post '/submit_score' do
 
   
   if user.high_score < new_score.to_i 
-    User.find_by_name(name).update_attribute(high_score, new_score)
+    user.update_attribute("high_score", new_score)
   end
   
+
   {user: name, high_score: user.high_score}.to_json
 
 end

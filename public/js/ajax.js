@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var highScores = [];
+    
   $('#score_button').on('click', function(e){
     e.preventDefault();
     console.log('click')
@@ -12,10 +14,26 @@ $(document).ready(function() {
       data: user_data,
       dataType: "json"
     })
-    
+     // Object {user: "Joey", high_score: 6050}
     .done(function(serverData) {
-        console.log(serverData);
-        $('#leaderboard').append(serverData);
+        highScores.push(serverData);
+
+        highScores = _.uniq(highScores, function (score) {
+            return score.user;
+        });
+        
+        
+        var sortedScores = _.sortBy(highScores, function (score) {
+            return score.high_score; 
+        });
+        
+        var items = _.map(sortedScores, function (score) {
+            return "<li>" + score.user + ": " + score.high_score + "</li>";
+        });
+        
+        $("#leaderboard").empty();
+        $('#leaderboard').append(items);
+
       })
     .fail(function() {
         console.log('doge')

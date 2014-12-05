@@ -21,7 +21,7 @@ Game.prototype.loop = function() {
   
   powerups.forEach(function (powerup) {
       if (powerup.checkCollision(hsienko)) {
-        hsienko.speed += 1
+        hsienko.speed += 5
         powerup.dead = true
         powerup.destroy();
       }
@@ -60,6 +60,7 @@ Game.prototype.loop = function() {
     fireballs.forEach(function (fireball) {
       if (shyguy.checkCollision(fireball)) {
         shyguy.destroy();
+        shyguy.dead = true;
       }
     });
     if (! shyguy.dead) {
