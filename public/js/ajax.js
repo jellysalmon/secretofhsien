@@ -36,11 +36,16 @@ $(document).ready(function() {
         });
         
         
-        console.log(items)
+ 
         items.reverse();
         console.log(items)
+
+        top_5 = items.slice(0,5)
+
+        console.log(items)
+        console.log(top_5)
         $("#leaderboard").empty();
-        $('#leaderboard').append(items);
+        $('#leaderboard').append(top_5);
 
       })
     .fail(function() {
