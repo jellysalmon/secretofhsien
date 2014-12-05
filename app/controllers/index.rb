@@ -12,8 +12,8 @@ end
 get "/logged_in" do
   code_response = params['code']
   client_id = "75d5633l2czc3k"
-  p "SECRET_KEY"
-  p ENV['SECRET_KEY']
+  # p "SECRET_KEY"
+  # p ENV['SECRET_KEY']
 
 
   token_response = HTTParty.post( "https://www.linkedin.com/uas/oauth2/accessToken", body: {
@@ -35,18 +35,30 @@ get "/logged_in" do
 
   @linkedin_response = HTTParty.get("https://api.linkedin.com/v1/people/~?oauth2_access_token=#{access_token}")
 
-  @linkedin_response
+  user = User.find_or_create_by(name: @linkedin_response["person"]["first_name"])
 
-  @linkedin_response["person"]["first_name"]
-
-  @user = User.find_or_create_by(access_token: access_token, name: @linkedin_response["person"]["first_name"])
-
-  @user_id = @user.id
-
-  erb :index
+  redirect "/game/#{user.id}"
 end
 
 
-get '/game' do 
+get '/game/:user_id' do 
+  @user = User.find(params[:user_id])
   erb :index
+end
+
+post '/submit_score' do
+  
+  name = params[:name]
+  new_score = params[:score]
+
+  user = User.find_by_name(params[:name])
+  
+
+  
+  if user.high_score < new_score.to_i 
+    User.find_by_name(name).update_attribute(high_score, new_score)
+  end
+  
+  {user: name, high_score: user.high_score}.to_json
+
 end

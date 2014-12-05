@@ -15,7 +15,6 @@ function Hsienko(stage) {
 Hsienko.prototype.initDisplay = function() {
     this.$sprite = $("<div class='" +  this.name + "'></div>")
     this.$stage.append(this.$sprite);
-
     this.updateDisplay();
 }
 

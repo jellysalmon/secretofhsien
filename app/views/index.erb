@@ -1,15 +1,14 @@
   <body>
-    <h1> Welcome to Hsien-Go <%= @user.name  %></h1>
+    <h1 id="user"><%=@user.name.capitalize%><h1>
+    <h1> Welcome to Hsien-Go ! </h1>
     <div id="stage">
     </div>
     Score: <span id="timer">0</span>
 
-    <form action="" method="post">
-      <label for="POST-name">Name:</label>
-      <input id="POST-name" type="text" name="name">
-      <label for="POST-Score">Score:</label>
-      <input id="timer" type="text" name="score">
-      <input type="submit" value="Upload!">
+    <form action="/submit_score" method="post">
+      <input id="score_button" type="submit" value="Upload Score!">
     </form>
+
+    <div id="leaderboard"></div>
   </body>
 
