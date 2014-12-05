@@ -46,15 +46,30 @@ post '/submit_score' do
   new_score = params[:score]
 
   user = User.find_by_name(params[:name])
+  
+  
+  
 
-  p user.name
-  p user.high_score
+  # user.name
+  # user.high_score
   
   if user.high_score < new_score.to_i 
     user.update_attribute("high_score", new_score)
   end
   
+  user_data_array = []
+  all_users = User.all
+  all_users.to_json
+  
+  all_users.each do |user| 
+    user_hash = {}
+    user_hash[:name] = user[:name]  
+    user_hash[:high_score] = user[:high_score]
+    user_data_array.push(user_hash)
+  end 
+  
+  user_data_array.to_json
 
-  {user: name, high_score: user.high_score}.to_json
+  # {user: name, high_score: user.high_score}.to_json
 
 end

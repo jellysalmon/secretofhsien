@@ -3,10 +3,9 @@ $(document).ready(function() {
     
   $('#score_button').on('click', function(e){
     e.preventDefault();
-    console.log('click')
 
     user_data = {score: $('#timer').text(), name: $('#user').html()}
-    console.log(user_data)
+    
   
     $.ajax({
       type:'post',
@@ -16,22 +15,31 @@ $(document).ready(function() {
     })
      // Object {user: "Joey", high_score: 6050}
     .done(function(serverData) {
-        highScores.push(serverData);
+        highScores = serverData
+        // highScores.push(serverData);
+        console.log(highScores)
 
-        highScores = _.uniq(highScores, function (score) {
-            return score.user;
-        });
-        
+        highScores.forEach
+       
+        // highScores = _.uniq(highScores, function (score) {
+        //     return score.user;
+        // });
+    
         
         var sortedScores = _.sortBy(highScores, function (score) {
             return score.high_score; 
         });
-        
+      
+
         var items = _.map(sortedScores, function (score) {
-            return "<li>" + score.user + " " + score.high_score + "</li>";
+            return "<li>" + score.name + " " + score.high_score + "</li>";
         });
         
-        // $("#leaderboard").empty();
+        
+        console.log(items)
+        items.reverse();
+        console.log(items)
+        $("#leaderboard").empty();
         $('#leaderboard').append(items);
 
       })

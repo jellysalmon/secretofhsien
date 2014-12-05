@@ -10,7 +10,7 @@
     </form>
     <div>
     <ol id="leaderboard">
-    <p>Hall of Fame</p>
+    <!-- <p>Hall of Fame</p> -->
       <% @users.all.each do |user| %>
         <li><%= "#{user.name} #{user.high_score}" %> </li>
       <% end %>
